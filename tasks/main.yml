@@ -1,0 +1,33 @@
+---
+- name: install package
+  apt:
+    deb: "{{ rclone_package_url }}"
+
+- name: create conf dir
+  file:
+    path: "{{ conf_dir }}"
+    state: directory
+
+- name: generate config
+  template:
+    src: rclone.j2
+    dest: "{{ conf_dir }}/{{ conf_file }}"
+    owner: root
+    group: root
+    mode: 0600
+  when: storages is defined
+
+- name: check /root/.ssh dir
+  file:
+    path: /root/.ssh
+    state: directory
+  when: backup_private_key is defined
+
+- name: add private key
+  copy:
+    content: "{{ backup_private_key }}"
+    dest: "/root/.ssh/{{ backup_private_key_file_name }}"
+    owner: root
+    group: root
+    mode: '0600'
+  when: backup_private_key is defined

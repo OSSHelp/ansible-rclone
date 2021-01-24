@@ -1,0 +1,9 @@
+{% for storage in storages %}
+[{{ storage.name }}]
+{% for key, value in storage | dictsort %}
+{% if key != 'name' %}
+{{ key }} = {{ value }}
+{% endif %}
+{% endfor %}
+
+{% endfor %}
