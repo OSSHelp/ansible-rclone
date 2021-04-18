@@ -1,5 +1,5 @@
 ---
-rclone_package_url: "https://downloads.rclone.org/rclone-current-linux-amd64.deb"
+rclone_package_url: "{% if rclone_version is defined %}https://downloads.rclone.org/v{{ rclone_version }}/rclone-v{{ rclone_version }}-linux-amd64.deb{% else %}https://downloads.rclone.org/rclone-current-linux-amd64.deb{% endif %}"
 conf_dir: /root/.config/rclone
 conf_file: rclone.conf
 backup_private_key_file_name: id_rsa.backup

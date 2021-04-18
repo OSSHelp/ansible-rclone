@@ -17,6 +17,16 @@ Example installs the latest rclone version with no configuration.
     - role: rclone
 ```
 
+### With custom rclone version
+
+[Versions available](https://downloads.rclone.org/).
+
+```yaml
+  roles:
+    - role: rclone
+      rclone_version: 1.54.0
+```
+
 ### With storages and rsa key
 
 ```yaml
